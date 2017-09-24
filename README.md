@@ -10,26 +10,26 @@ Besides, due to low API version, the UI was
 When I finally come to realize these problems, I have already become a Senior Three, sparing no effort to prepare for the College Entrance Exam. Recently a friend of mine said that he was interested in this project, so I upload the source code to Github.
 
 Anyway, it's really poorly written, please blame.
-### Feature
+## Feature
 - Automatically save password
 - Faster than the official website
 - Reduce data usage
-### Getting started
+## Getting started
 1. Download
 2. Install
 3. "Enjoy"
-### Special Thanks
-@xlfjn
-### Todo List
-- [] Rename every variable & function
-- [] Use Material Design
-- [] Upgrade algorithm
-- [] ~~NFC card emulation~~
-### Change Log
+## Special Thanks
+　[@xlfjn](https://github.com/xlfjn/)
+## Todo List
+- [ ] Rename every variable & function
+- [ ] Use Material Design
+- [ ] Upgrade algorithm
+- [ ] ~~NFC card emulation~~
+## Change Log
 #### v0.2.0 (2017-07-26)
 - Update the login procedure
 - Update HTTP get method
-#### v0.1.1
+### v0.1.1
 - Already forgotten
-#### v0.1.0
+### v0.1.0
 - Already forgotten
