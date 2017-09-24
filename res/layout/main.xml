@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:gravity="top|center"
+	android:orientation="vertical"
+	android:padding="5dp">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text=""
+		android:layout_width="wrap_content"/>
+
+	<ImageView
+		android:layout_width="194dp"
+		android:layout_height="97dp"
+		android:src="@drawable/szsy"
+		android:id="@+id/szsy"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text=""
+		android:textSize="30sp"
+		android:layout_width="wrap_content"/>
+
+	<EditText
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:inputType="number"
+		android:id="@+id/xuehao"
+		android:hint="学号"
+		android:singleLine="true"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text=""
+		android:layout_width="wrap_content"/>
+
+	<EditText
+		android:id="@+id/mima"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:hint="密码"
+		android:inputType="textPassword"
+		android:maxLines="1"
+		android:singleLine="true"/>
+
+	<Button
+		android:id="@+id/sign_in"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:text="登    录"/>
+
+</LinearLayout>
+

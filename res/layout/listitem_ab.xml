@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:descendantFocusability="blocksDescendants"
+	android:orientation="horizontal"
+	android:id="@+id/layout">
+
+	<TextView
+		android:layout_height="30dp"
+		android:text=""
+		android:layout_width="5dp"/>
+
+	<TextView
+		android:layout_height="30dp"
+		android:text="编号"
+		android:layout_width="45dp"
+		android:id="@+id/bh"
+		android:textSize="15sp"
+		android:gravity="center"/>
+
+	<TextView
+		android:layout_height="30dp"
+		android:text="类别"
+		android:layout_width="75dp"
+		android:id="@+id/lb"
+		android:textSize="15sp"
+		android:gravity="center"/>
+
+	<TextView
+		android:layout_height="30dp"
+		android:text="菜名"
+		android:layout_width="210dp"
+		android:id="@+id/cm"
+		android:textSize="15sp"
+		android:gravity="center"/>
+
+	<TextView
+		android:layout_height="30dp"
+		android:text="单价"
+		android:layout_width="70dp"
+		android:id="@+id/dj"
+		android:textSize="15sp"
+		android:gravity="center"/>
+
+	<TextView
+		android:layout_height="30dp"
+		android:text="份数"
+		android:layout_width="wrap_content"
+		android:id="@+id/fs"
+		android:textSize="15sp"
+		android:gravity="center"/>
+
+	<RadioGroup
+		android:layout_height="30dp"
+		android:layout_width="wrap_content"
+		android:orientation="horizontal"
+		android:id="@+id/rg">
+
+		<RadioButton
+			android:layout_height="30dp"
+			android:layout_width="wrap_content"
+			android:text="0"
+			android:textSize="15sp"
+			android:id="@+id/rb0"
+			android:gravity="center"/>
+
+		<RadioButton
+			android:layout_height="30dp"
+			android:layout_width="wrap_content"
+			android:text="1"
+			android:textSize="15sp"
+			android:id="@+id/rb1"
+			android:gravity="center"/>
+
+		<RadioButton
+			android:layout_height="30dp"
+			android:layout_width="wrap_content"
+			android:text="2"
+			android:textSize="15sp"
+			android:id="@+id/rb2"
+			android:gravity="center"/>
+
+		<RadioButton
+			android:layout_height="30dp"
+			android:layout_width="wrap_content"
+			android:text="3"
+			android:textSize="15sp"
+			android:id="@+id/rb3"
+			android:gravity="center"/>
+
+	</RadioGroup>
+
+</LinearLayout>
+
