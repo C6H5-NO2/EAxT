@@ -1,4 +1,4 @@
-#EAxT
+# EAxT
 EAxT is an Android application providing meal ordering service for Shenzhen Experimental School (Senior Section).
 
 ## Feature
