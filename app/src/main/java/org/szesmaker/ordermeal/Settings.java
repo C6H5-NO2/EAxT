@@ -39,12 +39,12 @@ public class Settings extends Activity
                     //new checkUpdate().execute();
                     AlertDialog.Builder build = new AlertDialog.Builder(Settings.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                     build.setTitle("检查更新");
-                    build.setMessage("我不想写了，你们自己去下载罢\nc6h5no2.com/download/");
+                    build.setMessage("我不想写了，你们自己去下载罢\nszesmaker.org");
                     build.setPositiveButton("复制", new DialogInterface.OnClickListener()
                         {
                             @Override
                             public void onClick(DialogInterface p1, int p2)
-                            {((ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text","https://www.c6h5no2.com/download/"));}
+                            {((ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text","https://szesmaker.org/"));}
                         });
                     build.create().show();
                 }
