@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="appThemeGeneral" parent="@android:style/Theme.Material.Light.DarkActionBar">
+		<item name="android:colorPrimary">@color/colorPrimary</item>
+		<item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="android:colorAccent">@color/colorAccent</item>
+		<item name="android:colorControlNormal">@color/colorAccent</item>
+		<item name="android:colorButtonNormal">@color/colorAccent</item>
+	</style>
+	<style name="appThemeMain" parent="@android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:colorPrimary">@color/colorPrimary</item>
+		<item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="android:colorAccent">@color/colorAccent</item>
+		<item name="android:colorControlNormal">@color/colorAccent</item>
+		<item name="android:colorButtonNormal">@color/colorAccent</item>
+	</style>
+	<style name="appThemeSaobao" parent="@android:style/Theme.Material.Light.DarkActionBar">
+		<item name="android:colorPrimary">@color/colorPrimarySaobao</item>
+		<item name="android:colorPrimaryDark">@color/colorPrimarySaobao</item>
+		<item name="android:colorAccent">@color/colorAccentSaobao</item>
+		<item name="android:colorControlNormal">@color/colorAccentSaobao</item>
+		<item name="android:colorButtonNormal">@color/colorAccentSaobao</item>
+	</style>
+</resources>

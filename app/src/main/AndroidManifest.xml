@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="org.szesmaker.ordermeal">
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/rice"
+		android:label="@string/appName"
+		android:logo="@drawable/transparent"
+		android:theme="@style/appThemeGeneral"
+		android:resizeableActivity="true">
+		<activity
+			android:name=".MainActivity"
+			android:theme="@style/appThemeMain"
+			android:screenOrientation="sensorPortrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".Settings"
+			android:screenOrientation="sensorPortrait">
+		</activity>
+		<activity
+			android:name=".Order"
+			android:screenOrientation="sensorPortrait"
+			android:launchMode="singleTask">
+		</activity>
+		<activity
+			android:name=".Prohibited"
+			android:screenOrientation="sensorLandscape">
+		</activity>
+		<activity
+			android:name=".ProhibitedList"
+			android:screenOrientation="sensorLandscape">
+		</activity>
+		<activity
+			android:name=".Allowed"
+			android:screenOrientation="sensorLandscape">
+		</activity>
+		<activity
+			android:name=".AllowedList"
+			android:screenOrientation="sensorLandscape">
+		</activity>
+	</application>
+</manifest>

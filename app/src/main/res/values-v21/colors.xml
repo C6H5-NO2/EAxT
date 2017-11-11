@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="colorButtonText">#FFFFFF</color>
+	<color name="colorPrimary">#4e6cef</color>
+	<color name="colorPrimaryDark">#4e6cef</color>
+	<color name="colorAccent">#00b0ff</color>
+	<color name="colorPrimarySaobao">#5e35b1</color>
+	<color name="colorAccentSaobao">#ff4081</color>
+</resources>

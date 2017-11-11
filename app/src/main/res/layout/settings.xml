@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:focusableInTouchMode="true">
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:padding="15dp">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="7dp"
+			android:paddingRight="7dp"
+			android:gravity="center"
+			android:layout_marginTop="0dp">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="保存密码"
+				android:layout_width="wrap_content"
+				android:textSize="18sp"
+				android:layout_centerVertical="true"
+				android:textColor="#000000"/>
+
+			<Switch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/savePass"
+				android:layout_alignParentRight="true"
+				android:textOn=""
+				android:textOff=""/>
+
+		</RelativeLayout>
+
+		<View
+			android:layout_height="1dp"
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_marginTop="15dp"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:text="检查更新"
+			android:layout_width="match_parent"
+			android:id="@+id/checkupdate"
+			android:textSize="18sp"
+			android:layout_marginTop="15dp"
+			android:layout_marginLeft="7dp"
+			android:textColor="#000000"/>
+
+		<View
+			android:layout_height="1dp"
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"
+			android:layout_marginTop="15dp"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:text="关于"
+			android:layout_width="match_parent"
+			android:id="@+id/about"
+			android:textSize="18sp"
+			android:layout_marginTop="15dp"
+			android:layout_marginLeft="7dp"
+			android:textColor="#000000"/>
+
+	</LinearLayout>
+
+</ScrollView>
+
