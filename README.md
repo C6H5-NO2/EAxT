@@ -21,8 +21,8 @@ EAxT is an Android application providing meal ordering service for Shenzhen Expe
 - Rename the application
 - Update the login procedure
 - Change appearance
- - Change the launcher icon
- - Add Material theme for Android 5.0+
+ * Change the launcher icon
+ * Add Material theme for Android 5.0+
 - Add an activity for settings
 ### v0.2.0 (2017-07-26)
 - Update the login procedure
