@@ -10,7 +10,6 @@ import java.util.*;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
-import android.view.View.OnClickListener;
 public class Order extends Activity
 {
     @Override

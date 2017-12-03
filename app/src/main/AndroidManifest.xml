@@ -5,7 +5,7 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<application
 		android:allowBackup="true"
-		android:icon="@mipmap/rice"
+		android:icon="@drawable/rice"
 		android:label="@string/appName"
 		android:logo="@drawable/transparent"
 		android:theme="@style/appThemeGeneral"

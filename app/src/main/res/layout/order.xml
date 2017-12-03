@@ -12,14 +12,14 @@
 		android:orientation="vertical"
 		android:gravity="top|center">
 
-		<DatePicker
+		<org.szesmaker.ordermeal.AdaptedDatePicker
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:layout_marginTop="19dp"
 			android:id="@+id/dp"
 			android:calendarViewShown="true"
 			android:spinnersShown="false"
-			android:focusable="true"
-			android:layout_marginTop="19dp"/>
+			android:focusable="true"/>
 
 		<TextView
 			android:layout_height="13dp"
