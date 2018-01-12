@@ -7,110 +7,100 @@ import android.view.View.*;
 import android.view.inputmethod.*;
 import android.widget.*;
 import java.io.*;
+import java.math.*;
 import java.net.*;
+import java.security.*;
 import java.util.*;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
-public class MainActivity extends Activity 
-{
-    Button submit;
-    EditText name, pass;
-    ImageView szsy;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+public class MainActivity extends Activity {
+    private Button submit;
+    private EditText un,pw;
+    private ImageView szsy;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         submit = (Button) this.findViewById(R.id.sign_in);
-        name = (EditText) this.findViewById(R.id.xuehao);
-        pass = (EditText) this.findViewById(R.id.mima);
+        un = (EditText) this.findViewById(R.id.username);
+        pw = (EditText) this.findViewById(R.id.password);
         szsy = (ImageView) this.findViewById(R.id.szsy);
-        sp = getSharedPreferences("code",MODE_PRIVATE);
+        sp = getSharedPreferences("code", MODE_PRIVATE);
         editor = sp.edit();
-        name.setText(sp.getString("name","").toString());
-        if(sp.getBoolean("savepass",true))
-            pass.setText(sp.getString("pass","").toString());
-        szsy.setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Intent settingjump = new Intent();
-                    settingjump.setClass(MainActivity.this,Settings.class);
-                    startActivity(settingjump);
-                }
-            });
-        submit.setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);         
-                    editor.putString("name",name.getText().toString());
-                    editor.commit();
-                    new login().execute();
-                }
-            });
+        un.setText(sp.getString("username", "").toString());
+        if (sp.getBoolean("savePassword", true))
+            pw.setText(sp.getString("password", "").toString());
+        szsy.setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Settings.class);
+                startActivity(intent);
+            }
+        });
+        submit.setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+                editor.putString("username", un.getText().toString());
+                editor.commit();
+                new Login().execute();
+            }
+        });
     }
-    class login extends AsyncTask<Void, Void, Integer>
-    {
+    private class Login extends AsyncTask<Void, Void, Integer> {
         String respond = "";
         ProgressDialog window = new ProgressDialog(MainActivity.this, ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
-        @Override
-        protected void onPreExecute()
-        {
+        @Override protected void onPreExecute() {
             window.setCancelable(false);
             window.setProgress(ProgressDialog.STYLE_SPINNER);
             window.setMessage("       正在登录");
             window.show();
         }
-        @Override
-        protected Integer doInBackground(Void[] p1)
-        {
-            CookieManager cookie = new CookieManager();
-            CookieHandler.setDefault(cookie);
+        @Override protected Integer doInBackground(Void[] p1) {
+            String password = encodeMD5(pw.getText().toString());
+            if (password.equals(""))
+                return 0;
+            CookieManager cm = new CookieManager();
+            CookieHandler.setDefault(cm);
             Document doc;
-            try
-            { doc = Jsoup.connect("http://passport-yun.szsy.cn/login?service=http://gzb.szsy.cn/card/Default.aspx").followRedirects(true).timeout(5000).get();}
-            catch (IOException e)
-            { return 0;}
+            try {
+                doc = Jsoup.connect("http://passport-yun.szsy.cn/login?service=http://gzb.szsy.cn/card/Default.aspx").followRedirects(true).timeout(5000).get();
+            }
+            catch (IOException e) {
+                return 0;
+            }
             respond = post("http://passport-yun.szsy.cn/login?service=http://gzb.szsy.cn/card/Default.aspx",
                            doc.select("input[name=execution]").first().attr("value"),
                            doc.select("input[name=lt]").first().attr("value"),
-                           pass.getText().toString(),
-                           name.getText().toString());
-            CookieStore cs = cookie.getCookieStore();
+                           password,
+                           un.getText().toString());
+            CookieStore cs = cm.getCookieStore();
             if (respond.indexOf("深圳实验学校一卡通管理系统") != -1)
                 return 1;
             return 0;
         }
-        @Override
-        protected void onPostExecute(Integer flag)
-        {
+        @Override protected void onPostExecute(Integer flag) {
             window.hide();
-            if (flag==1)
-            {
-                editor.putString("pass",pass.getText().toString());
+            if (flag == 1) {
+                editor.putString("password", pw.getText().toString());
                 editor.commit();
-                Intent loginjump = new Intent();
-                loginjump.putExtra("out", respond);
-                loginjump.putExtra("id", name.getText().toString());
-                loginjump.setClass(MainActivity.this, Order.class);
-                startActivity(loginjump);
-                overridePendingTransition(R.anim.slide_out_bottom,0);
+                Intent intent = new Intent();
+                intent.putExtra("httpRespond", respond);
+                intent.putExtra("cardID", un.getText().toString());
+                intent.setClass(MainActivity.this, Order.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_out_bottom, 0);
             }
-            else
-            {
-                editor.putString("pass","");
+            else {
+                editor.putString("password", "");
                 editor.commit();
                 Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
             }
         }
     }
-    public String post(String url, String execution, String lt, String password, String username)
-    {
+    private String post(String url, String execution, String lt, String password, String username) {
         Map<String, String> params = new HashMap<String, String>(8);
         params.put("_eventId", "submit");
         params.put("captcha", "null");
@@ -123,13 +113,11 @@ public class MainActivity extends Activity
         String data = sendHttpRequest(url, params, "utf-8");
         return data;
     }
-    public String sendHttpRequest(String url, Map<String, String> params, String encode)
-    {
+    private String sendHttpRequest(String url, Map<String, String> params, String encode) {
         String html = "";
         StringBuffer buffer = new StringBuffer();
         byte[] data = encapsulate(params, encode).toString().getBytes();
-        try
-        {
+        try {
             HttpURLConnection connection = (HttpURLConnection) (new URL(url)).openConnection();
             connection.setRequestMethod("POST");
             connection.setDoInput(true);
@@ -144,31 +132,36 @@ public class MainActivity extends Activity
             html = buffer.toString();
             connection.disconnect();
         }
-        catch (Exception e) 
-        {
+        catch (Exception e) {
             html = "";
         }
         return html;
     }
-    public StringBuffer encapsulate(Map<String, String> params, String encode)
-    {
+    private StringBuffer encapsulate(Map<String, String> params, String encode) {
         StringBuffer buffer = new StringBuffer();
-        try
-        {
+        try {
             for (Map.Entry<String, String> entry : params.entrySet())
-            {
                 buffer
                     .append(entry.getKey())
                     .append("=")
                     .append(URLEncoder.encode(entry.getValue(), encode))
                     .append("&");
-            }
             buffer.deleteCharAt(buffer.length() - 1);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             return null;
         }
         return buffer;
+    }
+    private String encodeMD5(String s) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] b = md.digest(s.getBytes("UTF-8"));
+            s = new BigInteger(1, b).toString(16);
+            return s;
+        }
+        catch (Exception e) {
+            return "";
+        }
     }
 }
