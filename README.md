@@ -4,7 +4,7 @@ EAxT is an Android application providing meal ordering service for Shenzhen Expe
 ## Feature
 - Swift.
 - Reduce data usage.
-- Convenient. Automatically save password.
+- Save password automatically.
 
 ## Task List
 - [ ] Kotlin
@@ -17,6 +17,9 @@ EAxT is an Android application providing meal ordering service for Shenzhen Expe
 [xlfjn](https://github.com/xlfjn/)
 
 ## Change Log
+### v0.2.2 (2018-01-12)
+- Add md5 to hash password
+- Fix some style issues
 ### v0.2.1 (2017-11-11)
 - Rename the application
 - Update the login procedure
