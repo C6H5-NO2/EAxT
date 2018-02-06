@@ -109,14 +109,6 @@ public class AllowedList extends Activity
                 }
             }
         );
-
-        //Decide whether the user needs some help for the new way of ordering
-
-        boolean introduced=spCode.getBoolean("newFeatureIntroduced",false);
-        if(introduced==false)
-        {
-            Toast.makeText(this, "点击列表项以更改份数", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public ArrayList<HashMap<String,Object>> wcd(String caidan)
@@ -224,12 +216,8 @@ public class AllowedList extends Activity
                         map = ol.get(position);
                         map.put("fs", Integer.toString(num));
                         ol.set(position, map);
-                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (num - 1) + "@", num + "|");
+                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (position - 1) + "@", num + "|");
                         editor.commit();
-
-                        //Update newFeatureIntroduced state
-                        editorCode.putBoolean("newFeatureIntroduced",true);
-                        editorCode.commit();
                         return;
                     }
 

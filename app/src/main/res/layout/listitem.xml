@@ -8,16 +8,9 @@
 
     <TextView
         android:layout_height="40dp"
-        android:text=""
-        android:layout_width="0dp"
-        android:layout_weight="5"
-        />
-
-    <TextView
-        android:layout_height="40dp"
         android:text="编号"
         android:layout_width="0dp"
-        android:layout_weight="40"
+        android:layout_weight="55"
         android:id="@+id/bh"
         android:textSize="15sp"
         android:gravity="center"
@@ -65,7 +58,7 @@
         android:id="@+id/fs"
         android:textSize="15sp"
         android:gravity="center"
-        android:textColor="#000000"
+        android:textColor="#536dfe"
         />
 
 </LinearLayout>
