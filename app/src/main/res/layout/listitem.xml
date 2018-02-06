@@ -9,12 +9,15 @@
     <TextView
         android:layout_height="40dp"
         android:text=""
-        android:layout_width="5dp"/>
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        />
 
     <TextView
         android:layout_height="40dp"
         android:text="编号"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
+        android:layout_weight="40"
         android:id="@+id/bh"
         android:textSize="15sp"
         android:gravity="center"
@@ -24,7 +27,8 @@
     <TextView
         android:layout_height="40dp"
         android:text="类别"
-        android:layout_width="45dp"
+        android:layout_width="0dp"
+        android:layout_weight="50"
         android:id="@+id/lb"
         android:textSize="15sp"
         android:gravity="center"
@@ -34,7 +38,8 @@
     <TextView
         android:layout_height="40dp"
         android:text="菜名"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
+        android:layout_weight="180"
         android:id="@+id/cm"
         android:textSize="15sp"
         android:gravity="center"
@@ -44,7 +49,8 @@
     <TextView
         android:layout_height="40dp"
         android:text="单价"
-        android:layout_width="40dp"
+        android:layout_width="0dp"
+        android:layout_weight="40"
         android:id="@+id/dj"
         android:textSize="15sp"
         android:gravity="center"
@@ -54,7 +60,8 @@
     <TextView
         android:layout_height="40dp"
         android:text="份数"
-        android:layout_width="55dp"
+        android:layout_width="0dp"
+        android:layout_weight="55"
         android:id="@+id/fs"
         android:textSize="15sp"
         android:gravity="center"

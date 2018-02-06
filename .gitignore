@@ -1,6 +1,6 @@
 /app/build/
-/.gradle
-/.idea
+/.gradle/
+/.idea/
 /gradle/
 /build/
 /EaxT.iml
