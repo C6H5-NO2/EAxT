@@ -30,19 +30,19 @@
 		</activity>
 		<activity
 			android:name=".Prohibited"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".ProhibitedList"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".Allowed"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".AllowedList"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 	</application>
 </manifest>

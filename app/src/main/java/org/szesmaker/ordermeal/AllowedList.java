@@ -2,6 +2,7 @@ package org.szesmaker.ordermeal;
 import android.app.*;
 import android.content.*;
 import android.os.*;
+import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -10,12 +11,14 @@ import java.util.*;
 import android.view.View.OnClickListener;
 public class AllowedList extends Activity
 {
-    @Override
+    //@Override
     private CheckBox ordered;
     private ListView list;
     private int meal_num = -1, order_num = -1;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
+    private SharedPreferences spCode;
+    private SharedPreferences.Editor editorCode;
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,8 @@ public class AllowedList extends Activity
         list = (ListView) this.findViewById(R.id.list);
         sp = getSharedPreferences("orderlist", MODE_PRIVATE);
         editor = sp.edit();
+        spCode = getSharedPreferences("code", MODE_PRIVATE);
+        editorCode = spCode.edit();
         Intent remote = getIntent();
         int flag = remote.getIntExtra("flag", -1);
         meal_num = flag - 1;
@@ -104,7 +109,16 @@ public class AllowedList extends Activity
                 }
             }
         );
+
+        //Decide whether the user needs some help for the new way of ordering
+
+        boolean introduced=spCode.getBoolean("newFeatureIntroduced",false);
+        if(introduced==false)
+        {
+            Toast.makeText(this, "点击列表项以更改份数", Toast.LENGTH_SHORT).show();
+        }
     }
+
     public ArrayList<HashMap<String,Object>> wcd(String caidan)
     {
         ArrayList<HashMap<String,Object>> cd = new ArrayList<HashMap<String,Object>>();
@@ -144,7 +158,7 @@ public class AllowedList extends Activity
         Context context;
         ArrayList<HashMap<String,Object>> ol;
 
-        @Override
+        //@Override
         public Adpa(Context context, ArrayList<HashMap<String,Object>> ol)
         {
             this.context = context;
@@ -177,51 +191,51 @@ public class AllowedList extends Activity
             if (convert == null)
             {
                 viewholder = new ViewHolder();
-                convert = LayoutInflater.from(context).inflate(R.layout.listitem_allowed, null);
+                convert = LayoutInflater.from(context).inflate(R.layout.listitem, null);
                 viewholder.bh = (TextView) convert.findViewById(R.id.bh);
                 viewholder.lb = (TextView) convert.findViewById(R.id.lb);
                 viewholder.cm = (TextView) convert.findViewById(R.id.cm);
                 viewholder.dj = (TextView) convert.findViewById(R.id.dj);
                 viewholder.fs = (TextView) convert.findViewById(R.id.fs);
-                viewholder.rg = (RadioGroup) convert.findViewById(R.id.rg);
-                viewholder.rb0 = (RadioButton) convert.findViewById(R.id.rb0);
-                viewholder.rb1 = (RadioButton) convert.findViewById(R.id.rb1);
-                viewholder.rb2 = (RadioButton) convert.findViewById(R.id.rb2);
-                viewholder.rb3 = (RadioButton) convert.findViewById(R.id.rb3);
                 convert.setTag(viewholder);
             }
             else
             {
                 viewholder = (ViewHolder) convert.getTag();
             }
-            viewholder.rg.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int numid)
+
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    if(position==0) return;
+                    else
                     {
-                        switch (numid)
-                        {
-                            case R.id.rb0:
-                                order_num = 0;
-                                break;
-                            case R.id.rb1:
-                                order_num = 1;
-                                break;
-                            case R.id.rb2:
-                                order_num = 2;
-                                break;
-                            case R.id.rb3:
-                                order_num = 3;
-                                break;
-                        }
-                        //Keep state
+
+                        int numCap=ol.get(position).get("zd").toString().charAt(0)-'0';
+                        TextView numTv=(TextView) view.findViewById(R.id.fs);
+                        int num=numTv.getText().charAt(0)-'0';
+                        num=(num+1)%(numCap+1);
+                        numTv.setText(""+num);
+
+                        //Keep state in ol updated
                         HashMap<String,Object> map = new HashMap<String,Object>();
-                        map = ol.get(dish_num);
-                        map.put("fs", (order_num + "").toString());
-                        ol.set(dish_num, map);
-                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (dish_num - 1) + "@", order_num + "|");
+                        map = ol.get(position);
+                        map.put("fs", Integer.toString(num));
+                        ol.set(position, map);
+                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (num - 1) + "@", num + "|");
                         editor.commit();
+
+                        //Update newFeatureIntroduced state
+                        editorCode.putBoolean("newFeatureIntroduced",true);
+                        editorCode.commit();
+                        return;
                     }
-                });
+
+                }
+            });
+
             viewholder.bh.setText(ol.get(position).get("bh").toString());
             viewholder.lb.setText(ol.get(position).get("lb").toString());
             viewholder.cm.setText(ol.get(position).get("cm").toString());
@@ -230,67 +244,25 @@ public class AllowedList extends Activity
             if (position == 0)
             {
                 viewholder.fs.setVisibility(View.VISIBLE);
-                viewholder.rg.setVisibility(View.INVISIBLE);
             }
             else
             {
-                viewholder.fs.setVisibility(View.GONE);
-                viewholder.rg.setVisibility(View.VISIBLE);
-                String num = (String) ol.get(position).get("fs");
-                String top = (String) ol.get(position).get("zd");
-                switch (num)
-                {
-                    case "0":
-                        viewholder.rb0.setChecked(true);
-                        break;
-                    case "1":
-                        viewholder.rb1.setChecked(true);
-                        break;
-                    case "2":
-                        viewholder.rb2.setChecked(true);
-                        break;
-                    case "3":
-                        viewholder.rb3.setChecked(true);
-                        break;
-                }
-                switch (top)
-                {
-                    case "0":
-                        viewholder.rb0.setVisibility(View.VISIBLE);
-                        viewholder.rb1.setVisibility(View.INVISIBLE);
-                        viewholder.rb2.setVisibility(View.INVISIBLE);
-                        viewholder.rb3.setVisibility(View.INVISIBLE);
-                        break;
-                    case "1":
-                        viewholder.rb0.setVisibility(View.VISIBLE);
-                        viewholder.rb1.setVisibility(View.VISIBLE);
-                        viewholder.rb2.setVisibility(View.INVISIBLE);
-                        viewholder.rb3.setVisibility(View.INVISIBLE);
-                        break;
-                    case "2":
-                        viewholder.rb0.setVisibility(View.VISIBLE);
-                        viewholder.rb1.setVisibility(View.VISIBLE);
-                        viewholder.rb2.setVisibility(View.VISIBLE);
-                        viewholder.rb3.setVisibility(View.INVISIBLE);
-                        break;
-                    case "3":
-                        viewholder.rb0.setVisibility(View.VISIBLE);
-                        viewholder.rb1.setVisibility(View.VISIBLE);
-                        viewholder.rb2.setVisibility(View.VISIBLE);
-                        viewholder.rb3.setVisibility(View.VISIBLE);
-                        break;
-                }
+                viewholder.fs.setVisibility(View.VISIBLE);
+                String num = ol.get(position).get("fs").toString();
+                String top = ol.get(position).get("zd").toString();
+                viewholder.fs.setText(num);
             }
+
             return convert;
         }
         class ViewHolder
         {
             TextView bh,lb,cm,dj,fs;
-            RadioGroup rg;
-            RadioButton rb0,rb1,rb2,rb3;
+            //RadioGroup rg;
+            //RadioButton rb0,rb1,rb2,rb3;
         }
     }
-    @Override
+    //@Override
     private long exittime = -2001;
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
