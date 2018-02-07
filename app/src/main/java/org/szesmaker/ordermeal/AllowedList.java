@@ -231,7 +231,7 @@ public class AllowedList extends Activity
             String num = ol.get(position).get("fs").toString();
             String top = ol.get(position).get("zd").toString();
             viewholder.fs.setText(num);
-            viewholder.fs.setTextColor(0xFF4E6CEF);
+            viewholder.fs.setTextColor(Color.parseColor("#00b0ff"));
 
             return convert;
         }
