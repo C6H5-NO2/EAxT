@@ -1,6 +1,7 @@
 package org.szesmaker.ordermeal;
 import android.app.*;
 import android.content.*;
+import android.graphics.Color;
 import android.os.*;
 import android.util.Log;
 import android.view.*;
@@ -9,6 +10,8 @@ import android.widget.*;
 import android.widget.RadioGroup.*;
 import java.util.*;
 import android.view.View.OnClickListener;
+import org.w3c.dom.Text;
+
 public class AllowedList extends Activity
 {
     //@Override
@@ -17,8 +20,6 @@ public class AllowedList extends Activity
     private int meal_num = -1, order_num = -1;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-    private SharedPreferences spCode;
-    private SharedPreferences.Editor editorCode;
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -27,8 +28,6 @@ public class AllowedList extends Activity
         list = (ListView) this.findViewById(R.id.list);
         sp = getSharedPreferences("orderlist", MODE_PRIVATE);
         editor = sp.edit();
-        spCode = getSharedPreferences("code", MODE_PRIVATE);
-        editorCode = spCode.edit();
         Intent remote = getIntent();
         int flag = remote.getIntExtra("flag", -1);
         meal_num = flag - 1;
@@ -109,14 +108,6 @@ public class AllowedList extends Activity
                 }
             }
         );
-
-        //Decide whether the user needs some help for the new way of ordering
-
-        boolean introduced=spCode.getBoolean("newFeatureIntroduced",false);
-        if(introduced==false)
-        {
-            Toast.makeText(this, "点击列表项以更改份数", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public ArrayList<HashMap<String,Object>> wcd(String caidan)
@@ -158,7 +149,6 @@ public class AllowedList extends Activity
         Context context;
         ArrayList<HashMap<String,Object>> ol;
 
-        //@Override
         public Adpa(Context context, ArrayList<HashMap<String,Object>> ol)
         {
             this.context = context;
@@ -224,15 +214,10 @@ public class AllowedList extends Activity
                         map = ol.get(position);
                         map.put("fs", Integer.toString(num));
                         ol.set(position, map);
-                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (num - 1) + "@", num + "|");
+                        editor.putString("Repeater1_GvReport_" + meal_num + "_TxtNum_" + (position - 1) + "@", num + "|");
                         editor.commit();
-
-                        //Update newFeatureIntroduced state
-                        editorCode.putBoolean("newFeatureIntroduced",true);
-                        editorCode.commit();
                         return;
                     }
-
                 }
             });
 
@@ -241,28 +226,20 @@ public class AllowedList extends Activity
             viewholder.cm.setText(ol.get(position).get("cm").toString());
             viewholder.dj.setText(ol.get(position).get("dj").toString());
             viewholder.fs.setText(ol.get(position).get("fs").toString());
-            if (position == 0)
-            {
-                viewholder.fs.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                viewholder.fs.setVisibility(View.VISIBLE);
-                String num = ol.get(position).get("fs").toString();
-                String top = ol.get(position).get("zd").toString();
-                viewholder.fs.setText(num);
-            }
+
+            viewholder.fs.setVisibility(View.VISIBLE);
+            String num = ol.get(position).get("fs").toString();
+            String top = ol.get(position).get("zd").toString();
+            viewholder.fs.setText(num);
+            viewholder.fs.setTextColor(0xFF4E6CEF);
 
             return convert;
         }
         class ViewHolder
         {
             TextView bh,lb,cm,dj,fs;
-            //RadioGroup rg;
-            //RadioButton rb0,rb1,rb2,rb3;
         }
     }
-    //@Override
     private long exittime = -2001;
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
