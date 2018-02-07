@@ -44,7 +44,11 @@ public class Settings extends Activity
             @Override public void onClick(View v) {
                 AlertDialog.Builder build = new AlertDialog.Builder(Settings.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
                 build.setTitle("Developer: C6H5-NO2");
-                build.setMessage("Version: 0.2.2\nLicense: MIT\nFollow us on Github: szes-maker");
+                String version=null;
+                try {
+                    version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                } catch (android.content.pm.PackageManager.NameNotFoundException e){}
+                build.setMessage("Version: "+version+"\nLicense: MIT\nFollow us on Github: szes-maker");
                 build.create().show();
             }
         });

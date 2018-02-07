@@ -78,7 +78,7 @@ public class ProhibitedList extends Activity
         }
         ordered.setClickable(false);
         ArrayList<HashMap<String,Object>> ol = wcd(caidan);
-        SimpleAdapter sap = new SimpleAdapter(this, ol, R.layout.listitem_prohibited, new String[] { "bh","lb","cm","dj","dg"}, new int[] {R.id.bh, R.id.lb,R.id.cm,R.id.dj,R.id.fs});
+        SimpleAdapter sap = new SimpleAdapter(this, ol, R.layout.listitem, new String[] { "bh","lb","cm","dj","dg"}, new int[] {R.id.bh, R.id.lb,R.id.cm,R.id.dj,R.id.fs});
         list.setAdapter(sap);
     }
     public ArrayList<HashMap<String,Object>> wcd(String caidan)

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.szesmaker.ordermeal">
+	package="org.szesmaker.ordermeal"
+    >
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<application
 		android:allowBackup="true"
@@ -30,19 +31,19 @@
 		</activity>
 		<activity
 			android:name=".Prohibited"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".ProhibitedList"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".Allowed"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 		<activity
 			android:name=".AllowedList"
-			android:screenOrientation="sensorLandscape">
+			android:screenOrientation="sensorPortrait">
 		</activity>
 	</application>
 </manifest>
