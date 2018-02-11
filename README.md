@@ -14,7 +14,8 @@ EAxT is an Android application providing meal ordering service for Shenzhen Expe
 - [ ] ~~~NFC card emulation~~~
 
 ## Acknowledgements
-[xlfjn](https://github.com/xlfjn/)
+- [@xlfjn](https://github.com/xlfjn/)
+- [@HurryPeng](https://github.com/HurryPeng/)
 
 ## Change Log
 ### v0.2.2 (2018-01-12)

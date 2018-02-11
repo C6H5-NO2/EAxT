@@ -3,23 +3,20 @@ import android.app.*;
 import android.content.*;
 import android.graphics.Color;
 import android.os.*;
-import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 import android.widget.RadioGroup.*;
 import java.util.*;
 import android.view.View.OnClickListener;
-import org.w3c.dom.Text;
-
 public class AllowedList extends Activity
 {
-    //@Override
     private CheckBox ordered;
     private ListView list;
     private int meal_num = -1, order_num = -1;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
+    @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -109,7 +106,6 @@ public class AllowedList extends Activity
             }
         );
     }
-
     public ArrayList<HashMap<String,Object>> wcd(String caidan)
     {
         ArrayList<HashMap<String,Object>> cd = new ArrayList<HashMap<String,Object>>();
@@ -241,6 +237,7 @@ public class AllowedList extends Activity
         }
     }
     private long exittime = -2001;
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK)
