@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "org.szesmaker.ordermeal"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 27
         versionCode 5
         versionName "0.2.2"
     }
